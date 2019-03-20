@@ -49,11 +49,12 @@ def my_count
     self.my_select(&Proc.new).length # pass yield block to my_select fn. using a new proc
 end
 
-def my_map
+def my_map(proc = nil)
     # Returns a new array created by applying mapping block to given array
     mapped_array = []
     self.my_each do |e|
-        mapped_array << yield(e)
+        block_result = proc ? (proc.call e) : (yield e)
+        mapped_array << e if block_result
     end
     mapped_array
 end
