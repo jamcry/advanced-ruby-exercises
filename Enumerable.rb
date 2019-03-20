@@ -58,8 +58,21 @@ def my_map
     mapped_array
 end
 
-def my_inject
-    
+def my_inject(memo = nil)
+    unless memo
+        memo = self[0]
+        start_index = 1
+    else
+        start_index = 0
+    end
+    (start_index...self.length).each do |i|
+        memo = yield(memo, self[i])
+    end
+    memo
+end
+
+def multiply_els
+    self.my_inject {|m,v| m * v}
 end
 
 end
