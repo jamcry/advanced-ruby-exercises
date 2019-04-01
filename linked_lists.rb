@@ -1,20 +1,20 @@
 class LinkedList
-	attr_reader :head
-	def initialize(value)
+  attr_reader :head
+  def initialize(value)
     @head = Node.new(value, nil)
-	end
+  end
 
-	def append(value)
+  def append(value)
     # Add a new node to the end of the list
     # Append a new node to the end ( next node of tail) with specified value.
-		tail.next_node = Node.new(value, nil)
-	end
+    tail.next_node = Node.new(value, nil)
+  end
 
-	def preappend
-		# adda a new node to the start of the list
-	end
+  def preappend
+    # adda a new node to the start of the list
+  end
 
-	def size
+  def size
     # return the total number of nodes in the list
     current_node = @head
     node_count = 0
