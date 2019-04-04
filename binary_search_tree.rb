@@ -55,6 +55,8 @@ class Node
     nil
   end
 
+
+
   def left
     self.children[:left]
   end
@@ -72,9 +74,9 @@ puts "Binary Search Tree".upcase.center(45,"-")
 puts "     #{wiki.value}"
 puts "   /   \\"
 puts "  #{wiki.left.value}    #{wiki.right.value}"
-puts " / \\  /  \\"
-puts "#{wiki.left.left.value}    #{wiki.left.right.value}   #{wiki.right.right.value}"
-puts "   / \\  /  \\"
+puts " / \\    \\"
+puts "#{wiki.left.left.value}   #{wiki.left.right.value}   #{wiki.right.right.value}"
+puts "   /  \\   \\"
 puts "  #{wiki.left.right.left.value}    #{wiki.left.right.right.value}   #{wiki.right.right.left.value}"
 # Needs a better way to print the tree.
 puts "","Testing Search Algorithms".center(45,"-")
