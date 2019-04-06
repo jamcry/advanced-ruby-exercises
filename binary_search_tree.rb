@@ -43,19 +43,52 @@ class Node
     queue = [self]
 
     # search until there are no nodes left
-    while queue.length > 0
+    until queue.length == 0
         # pop the first element and assign to the node variable
         node = queue.shift
-        # stop searching and return if the target value is found
+        
+        # return the current node if the target value found
         return node if node.value == target
+        
         # add the children of the current node to the queue if any
-        queue << node.children[:left] if !node.children[:left].nil?
-        queue << node.children[:right] if !node.children[:right].nil?
+        queue << node.left if !node.left.nil?
+        queue << node.right if !node.right.nil?
     end
     nil
   end
 
 
+  def depth_first_search(target)
+    # create an array that acts like a stack
+    stack = [self]
+
+    visited = [] # keeps the visited nodes
+    
+    # search until there are no nodes left
+    until stack.length == 0
+      # get the last element in the stack
+      node = stack[-1]
+
+      # mark current node as visited
+      visited << node
+
+      # return the current node if the target value found
+      return node if node.value == target
+      
+      # if there is unvisited left node, add it to stack
+      if node.left && !visited.include?(node.left)
+        stack << node.left
+      # else if there is unvisited right node, add it to stack
+      elsif node.right && !visited.include?(node.right)
+        stack << node.right
+      # if there are no visited children, pop the node from stack
+      else
+        stack.pop
+      end
+  
+    end
+    nil
+  end
 
   def left
     self.children[:left]
@@ -83,3 +116,6 @@ puts "","Testing Search Algorithms".center(45,"-")
 puts "> Breadth-First Search (3): #{wiki.breadth_first_search(3)}"
 puts "> Breadth-First Search (13): #{wiki.breadth_first_search(13)}"
 puts "> Breadth-First Search (45): #{wiki.breadth_first_search(45)}"
+puts "> Depth-First Search (3): #{wiki.depth_first_search(3)}"
+puts "> Depth-First Search (13): #{wiki.depth_first_search(13)}"
+puts "> Depth-First Search (45): #{wiki.depth_first_search(45)}"
