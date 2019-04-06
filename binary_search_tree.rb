@@ -57,7 +57,7 @@ class Node
     nil
   end
 
-
+  # Depth-First Search (Preorder) implementation
   def depth_first_search(target)
     # create an array that acts like a stack
     stack = [self]
@@ -90,6 +90,17 @@ class Node
     nil
   end
 
+  def dfs_rec(target, node = self)
+    left_dfs = node.left.dfs_rec(target) if node.left
+    return left_dfs if left_dfs
+    
+    right_dfs = node.right.dfs_rec(target) if node.right
+    return right_dfs if right_dfs
+    
+    return node if node.value == target
+    return nil
+  end
+
   def left
     self.children[:left]
   end
@@ -119,3 +130,6 @@ puts "> Breadth-First Search (45): #{wiki.breadth_first_search(45)}"
 puts "> Depth-First Search (3): #{wiki.depth_first_search(3)}"
 puts "> Depth-First Search (13): #{wiki.depth_first_search(13)}"
 puts "> Depth-First Search (45): #{wiki.depth_first_search(45)}"
+puts "> Depth-First Search (3): #{wiki.dfs_rec(3)}"
+puts "> Depth-First Search (13): #{wiki.dfs_rec(13)}"
+puts "> Depth-First Search (45): #{wiki.dfs_rec(45)}"
