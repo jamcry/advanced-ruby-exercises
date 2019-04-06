@@ -4,20 +4,20 @@ class LinkedList
     @head = Node.new(value, nil)
   end
   
+  # add a new node to the end of the list
   def append(value)
-    # Add a new node to the end of the list
-    # Append a new node to the end ( next node of tail ) with specified value.
+    # append a new node to the end ( next node of tail ) with specified value.
     tail.next_node = Node.new(value, nil)
   end
   
+  # add a new node to the start of the list
   def preappend(value)
-    # add a new node to the start of the list
     # Replace the head with new node with specified value
     @head = Node.new(value, @head)
   end
 
+  # return the total number of nodes in the list
   def size
-    # return the total number of nodes in the list
     current_node = @head
     node_count = 0
     while !current_node.nil?
@@ -26,21 +26,20 @@ class LinkedList
     end
     node_count
   end
-  
+
+  # return the first node in the list
   def head
-    # return the first node in the list
     #! this definition is unneccessary due to attr_reader
     @head
   end
   
+  # return the last node in the list
   def tail
-    # return the last node in the list
     self.each_with_index { |node, index| return node if index == (self.size - 1) }
   end
   
+  # return the node at the given index
   def at(index)
-    # return the node at the given index
-  
     # return nil if index is out of range
     if index > (size - 1)
       nil
@@ -49,9 +48,8 @@ class LinkedList
     end
   end
   
+  # remove the last element from the list
   def pop
-    # remove the last element from the list
-
     self.each do |node|
       if node.next_node.next_node.nil?
         last_value = node.next_node.value
@@ -69,8 +67,8 @@ class LinkedList
     false
   end
   
+  # return the index of the node containing data or nil
   def find(data)
-    # return the index of the node containing data or nil
     self.each_with_index { |node, index| return index if node.value == data }
     nil
   end
@@ -79,7 +77,7 @@ class LinkedList
     # Parse LinkedList to string # => ( data ) -> ( data ) -> ( data ) -> nil
     list_string = ""
     # Iterate until reaching the last (nil) node
-    self.each {|n| list_string << "( #{n.value} ) -> "}
+    self.each { |n| list_string << "( #{n.value} ) -> " }
     list_string + "nil"
   end
   
