@@ -7,6 +7,7 @@ class Node
     @children = children
   end
 
+
   def build_tree(array)
     root_node = self
     
@@ -16,7 +17,6 @@ class Node
     
       if i == 0
         node.value = n
-    
       else
         # Find where will the new node will be added
         pointer = (n < node.value) ? :left : :right
@@ -31,12 +31,10 @@ class Node
         end
 
         node.children[pointer] = Node.new(n, node)
-        
-        # puts "Created new node with value:#{node.children[pointer].value}"
       end
-
     end
   end
+
 
   def breadth_first_search(target)
     # create an array that acts like a queue
@@ -57,12 +55,13 @@ class Node
     nil
   end
 
+
   # Depth-First Search (Preorder) implementation
   def depth_first_search(target)
     # create an array that acts like a stack
     stack = [self]
-
-    visited = [] # keeps the visited nodes
+    # visited array keeps the visited nodes
+    visited = []
     
     # search until there are no nodes left
     until stack.length == 0
@@ -85,10 +84,10 @@ class Node
       else
         stack.pop
       end
-  
     end
     nil
   end
+
 
   def dfs_rec(target, node = self)
     left_dfs = node.left.dfs_rec(target) if node.left
