@@ -1,5 +1,6 @@
-module Enumerable
+#lib/Enumerable.rb
 
+module Enumerable
 def my_each
     (0...self.length).each do |i|
         current_element = self[i]
