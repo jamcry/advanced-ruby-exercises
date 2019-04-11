@@ -5,7 +5,6 @@ def mergesort(array)
     
     # Divide array into smaller arrays and merge sort them
     a = mergesort(array[0...(len / 2)])
-    
     b = mergesort(array[(len / 2)..])
 
     # Merge sub-arrays into new array "sorted"
